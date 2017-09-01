@@ -1,11 +1,8 @@
 <template>
-    <div>{{msg}}</div>
+  <div>1111</div>
 </template>
- <script>
-    export default{
-        name:'catalogManage',
-        data(){
-            msg:"ddd"
-        }
-    }
- </script>
+<script>
+  export default{
+    name:'catalogManage'
+  }
+</script>

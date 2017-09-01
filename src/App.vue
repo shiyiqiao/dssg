@@ -15,7 +15,11 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  data(){
+
+  },
+
 }
 </script>
 
@@ -28,6 +32,9 @@ export default {
   *{
     margin:0;
     padding:0;
+  }
+  ul{
+    float: left;
   }
   ul>li{
       list-style:none;

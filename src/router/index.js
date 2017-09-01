@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Hello from '@/components/Hello'
 import catalogManage from '@/components/catalogManage'
 import resManage from '@/components/resManage'
 import networkManage from '@/components/networkManage'
@@ -12,7 +13,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path:'/catalogManage',
+      path:'*',
       name:'catalogManage',
       component: catalogManage
     },
@@ -46,10 +47,5 @@ export default new Router({
       name:'portalManage',
       component: portalManage
     }
-    // {
-    //   path: '/',
-    //   name: 'Hello',
-    //   component: Hello
-    // }
   ]
 })
