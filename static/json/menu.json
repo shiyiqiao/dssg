@@ -1,6 +1,6 @@
 {
   "menu":[
-    {"label":"example","id":"0","pid":"root","icon":"fa fa-file","show":true},
+    //{"label":"example","id":"0","pid":"root","icon":"fa fa-file","show":true},
     {"label":"列表页面","id":"0-1","pid":"0","url":"../html/example/grid.html"},
     {"label":"树页面","id":"0-2","pid":"0","url":"../html/example/tree.html"},
     {"label":"块列表页面","id":"0-3","pid":"0","url":"../html/example/blockGrid.html"},
