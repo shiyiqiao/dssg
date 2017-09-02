@@ -9,7 +9,15 @@
         <li><router-link to="/sysManage">系统管理</router-link></li>
         <li><router-link to="/portalManage">门户管理</router-link></li>
     </ul>
-    <router-view></router-view>
+    <div>
+      <div v-for="item in pArray">
+        {{item.label}}
+    </div>
+    </div>
+
+    <div class="right-box">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -17,20 +25,31 @@
 import $ from 'jquery'
 export default {
   name: 'app',
+  data(){
+      return{
+        pArray:[]
+      }
+  },
   mounted:function () {
-    debugger
     this.$http.get("../../static/json/menu.json",function (result) {
+      console.log(result)
       var menu = result.menu;
-      console.log(menu)
-      var pids=[];
-      debugger
+      //将pid为为root的划分到一个数组中
       for(var i=0;i<menu.length;i++){
-          debugger
-          if($.inArray(menu[i].pid,pids)!=-1){
-            pids.push(menu[i].pid)
+          if(menu[i].pid=="root"){
+            this.pArray.push(menu[i])
           }
       }
-       // var pids =
+      //将menu中的pid与pArray数组id中相同的放到一起
+      this.pArray.forEach(function (v1,k1) {
+        var children =[]
+        menu.forEach(function (v2,k2) {
+          if(v1.id==v2.pid){
+            v1.children.push(v2)
+          }
+        })
+      })
+      console.log(this.pArray)
     })
   }
 }
