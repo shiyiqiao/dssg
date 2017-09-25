@@ -6,9 +6,13 @@
       </div>
       <ul>
         <li v-for="(parent,index) in pArray" :key="parent.id">
-          <el-menu class="el-menu-vertical-demo"  :default-active="selected" :active="selected" >
+          <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" @open="handleOpen" @close="handleClose">
             <el-submenu :index='parent.id'>
-              <template slot="title"><i class="el-icon-message"></i>{{parent.label}}</template>
+              <template slot="title" >
+                <div :class="{'title-active':currentActive===index}">
+                  <i :class="parent.icon" class="mr-5"></i>{{parent.label}}
+               </div>
+              </template>
               <el-menu-item-group>
                 <el-menu-item v-for="sub in parent.children" :index="sub.id" :key="sub.id" >
                     <router-link :to="sub.url">{{sub.label}}</router-link>
@@ -31,7 +35,8 @@
     data () {
       return {
         pArray: [],
-        selected:"1"
+        isOpen:"1",
+        currentActive:''
       }
     },
     created:function () {
@@ -58,8 +63,11 @@
       });
     },
     methods :{
-      changeItem:function () {
-       // this.isActive = !this.isActive
+      handleOpen:function (key, keyPath) {
+          this.currentActive = key-1
+      },
+      handleClose:function (key, keyPath) {
+        this.currentActive = ''
       }
     }
   }
@@ -67,10 +75,14 @@
 
 <style>
   #app {
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-family: "微软雅黑";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size: 14px;
+  }
+  .mr-5{
+    margin-right: 5px;
   }
   *{
     margin:0;
@@ -89,7 +101,8 @@
     bottom: 0;
     width: 200px;
     height:100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: url("./assets/images/menu_bg.jpg");
   }
   /*logo*/
@@ -103,45 +116,48 @@
     margin-top: 5px;
     margin-left: 5px;
   }
-  /*修改手风琴插件的样式*/
-  .el-collapse{
-    border: 0;
+  /*修改navMenu插件的样式*/
+  .el-menu,
+  .el-menu-item-group{
+    background-color: transparent !important;
+    color: #ffffff;
   }
-  .el-collapse-item__header,
-  .el-collapse-item__wrap,
-  .el-collapse-item__content{
-    font-family: "微软雅黑";
-    color: #fff;
-    background: rgba(0,0,0,0);
-    border-bottom:0;
-    font-size: 14px;
+  .el-menu-item-group__title{
+    padding-top: 0;
   }
-  .el-collapse-item__content{
-    padding:0;
+  .el-menu-item, .el-submenu__title,
+  .el-menu-item>a{
+    color: #ffffff !important;
   }
-  .el-collapse-item__content a{
-    color:#fff
+  .el-submenu__title {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 !important;
+    border-bottom: 1px solid transparent;
   }
-  .el-collapse-item__content .navItem{
-    padding: 12px 45px;
-    font-size:13px
+  .el-submenu__title>div{
+    text-align: center;
   }
-  .is-active .el-collapse-item__header{
-    border-bottom: 1px solid #02719c;
+  .title-active{
+    border-bottom: 1px solid #02719c !important;
   }
-  .is-active .el-collapse-item__content{
-    background:#015076;
+  .el-submenu__title:hover {
+    background-color: transparent;
+    color: #04ccff !important;
   }
-  .navItem{
-    border-left: 4px solid transparent;
+  .el-menu-item{
+    height:42px;
+    line-height: 42px;
+    border-left:4px solid transparent;
   }
-  .item-active {
-    background: #013c58;
+  .el-menu-item:hover {
+    background: #013c58 !important;
     border-left: 4px solid #04ccff;
+    color: #04ccff;
   }
-  .is-active .navItem:first-child{
-    background: #013c58;
-    border-left: 4px solid #04ccff;
+  .el-submenu .el-menu-item {
+    text-align: center;
   }
   .right-box{
     position: absolute;
