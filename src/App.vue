@@ -6,8 +6,8 @@
       </div>
       <ul>
         <li v-for="(parent,index) in pArray" :key="parent.id">
-          <el-menu class="el-menu-vertical-demo" uniqueOpened=true defaultActive="0">
-            <el-submenu :index="parent.id">
+          <el-menu class="el-menu-vertical-demo"  :default-active="selected" :active="selected" >
+            <el-submenu :index='parent.id'>
               <template slot="title"><i class="el-icon-message"></i>{{parent.label}}</template>
               <el-menu-item-group>
                 <el-menu-item v-for="sub in parent.children" :index="sub.id" :key="sub.id" >
@@ -31,17 +31,13 @@
     data () {
       return {
         pArray: [],
-        defaultProps:{
-          label:'label',
-          children:'children'
-        },
-        activeName:'1'
+        selected:"1"
       }
     },
     created:function () {
       this.$http.get("../../static/json/menu.json").then((response)=>{
         var menu = response.body.menu;
-        var pArray = []
+        var pArray = [];
         //将pid为为root的划分到一个数组中
         for(var i=0;i<menu.length;i++){
           if(menu[i].pid=="root"){
@@ -63,7 +59,7 @@
     },
     methods :{
       changeItem:function () {
-        this.isActive = !this.isActive
+       // this.isActive = !this.isActive
       }
     }
   }
