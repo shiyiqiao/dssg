@@ -6,13 +6,16 @@
       </div>
       <ul>
         <li v-for="(parent,index) in pArray" :key="parent.id">
-          <el-collapse v-model="activeName" accordion>
-            <el-collapse-item :title="parent.label" :name="parent.id">
-              <div class="navItem" v-for="sub in parent.children" @click="changeItem" :key="sub.id">
-                <router-link :to="sub.url">{{sub.label}}</router-link>
-              </div>
-            </el-collapse-item>
-          </el-collapse>
+          <el-menu class="el-menu-vertical-demo" uniqueOpened=true defaultActive="0">
+            <el-submenu :index="parent.id">
+              <template slot="title"><i class="el-icon-message"></i>{{parent.label}}</template>
+              <el-menu-item-group>
+                <el-menu-item v-for="sub in parent.children" :index="sub.id" :key="sub.id" >
+                    <router-link :to="sub.url">{{sub.label}}</router-link>
+                </el-menu-item>
+              </el-menu-item-group>
+            </el-submenu>
+          </el-menu>
         </li>
       </ul>
     </div>
