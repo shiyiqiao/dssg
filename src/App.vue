@@ -6,7 +6,8 @@
       </div>
       <ul>
         <li v-for="(parent,index) in pArray" :key="parent.id">
-          <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" @open="handleOpen" @close="handleClose">
+          <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" :unique-opened="uniqueOpened"
+           :default-openeds="defaultOpeneds" @open="handleOpen" @close="handleClose">
             <el-submenu :index='parent.id'>
               <template slot="title" >
                   <i :class="parent.icon" class="mr-5"></i>{{parent.label}}
@@ -35,8 +36,10 @@
     data () {
       return {
         pArray: [],
-        isOpen:"1",
-        currentActive:''
+        isOpen:"1-1",
+        currentActive:'',
+        defaultOpeneds:["1"],
+        uniqueOpened:true
       }
     },
     created:function () {
@@ -158,6 +161,20 @@
   }
   .el-submenu .el-menu-item {
     text-align: center;
+  }
+  .el-submenu.is-active .el-submenu__title{
+    border-bottom:0;
+  }
+  /*二级选项的激活样式*/
+  .el-menu-item.is-active{
+    background: #013c58;
+    border-left: 4px solid #04ccff;
+    color: #04ccff;
+  }
+  .el-submenu.is-opened> .el-menu{
+    border-top: 1px solid #02719c;
+    border-bottom: 1px solid #02719c;
+    background: #015076 !important;
   }
   .right-box{
     position: absolute;
