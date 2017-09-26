@@ -9,15 +9,15 @@
           <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" @open="handleOpen" @close="handleClose">
             <el-submenu :index='parent.id'>
               <template slot="title" >
-                <div :class="{'title-active':currentActive===index}">
                   <i :class="parent.icon" class="mr-5"></i>{{parent.label}}
-               </div>
               </template>
-              <el-menu-item-group>
-                <el-menu-item v-for="sub in parent.children" :index="sub.id" :key="sub.id" >
+              <div  :class="{'menu-item-group-active':currentActive===index}">
+                <el-menu-item-group>
+                  <el-menu-item v-for="sub in parent.children" :index="sub.id" :key="sub.id" >
                     <router-link :to="sub.url">{{sub.label}}</router-link>
-                </el-menu-item>
-              </el-menu-item-group>
+                  </el-menu-item>
+                </el-menu-item-group>
+              </div>
             </el-submenu>
           </el-menu>
         </li>
@@ -133,23 +133,23 @@
     position: relative;
     height: 40px;
     line-height: 40px;
-    padding: 0 !important;
+    padding-left: 40px!important;
     border-bottom: 1px solid transparent;
   }
-  .el-submenu__title>div{
-    text-align: center;
-  }
-  .title-active{
+  .menu-item-group-active{
+    border-top: 1px solid #02719c !important;
     border-bottom: 1px solid #02719c !important;
+    background: #015076;
   }
   .el-submenu__title:hover {
     background-color: transparent;
     color: #04ccff !important;
   }
-  .el-menu-item{
+  .el-submenu .el-menu-item{
     height:42px;
     line-height: 42px;
     border-left:4px solid transparent;
+    min-width:160px;
   }
   .el-menu-item:hover {
     background: #013c58 !important;
