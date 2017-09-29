@@ -8,6 +8,8 @@ import elementUI from "element-ui"
 import 'element-ui/lib/theme-default/index.css'
 import './assets/css/font-awesome.min.css'
 import './assets/fonts/iconfont.css'
+import './assets/css/jquery.mCustomScrollbar.min.css'
+//import $ from 'jquery'
 Vue.use(vueResource);
 Vue.use(elementUI);
 Vue.config.productionTip = false;

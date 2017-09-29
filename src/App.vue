@@ -4,11 +4,9 @@
       <div class="ui-logo">
         <img src="./assets/images/logo1.png"/>
       </div>
-      <ul>
-        <li v-for="(parent,index) in pArray" :key="parent.id">
-          <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" :unique-opened="uniqueOpened"
-           :default-openeds="defaultOpeneds" @open="handleOpen" @close="handleClose">
-            <el-submenu :index='parent.id'>
+      <div class="tree-box">
+          <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" :unique-opened="true" :default-openeds="defaultOpeneds">
+            <el-submenu  v-for="(parent,index) in pArray"   :index='parent.id' :key="parent.id"  @open="handleOpen" @close="handleClose">
               <template slot="title" >
                   <i :class="parent.icon" class="mr-5"></i>{{parent.label}}
               </template>
@@ -21,8 +19,7 @@
               </div>
             </el-submenu>
           </el-menu>
-        </li>
-      </ul>
+      </div>
     </div>
     <div class="right-box">
       <router-view></router-view>
@@ -39,7 +36,7 @@
         isOpen:"1-1",
         currentActive:'',
         defaultOpeneds:["1"],
-        uniqueOpened:true
+        uniqueOpened:0
       }
     },
     created:function () {
@@ -107,6 +104,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     background: url("./assets/images/menu_bg.jpg");
+    background-size: cover;
   }
   /*logo*/
   .ui-logo{
