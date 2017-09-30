@@ -9,7 +9,9 @@ import 'element-ui/lib/theme-default/index.css'
 import './assets/css/font-awesome.min.css'
 import './assets/fonts/iconfont.css'
 import './assets/css/jquery.mCustomScrollbar.min.css'
-//import $ from 'jquery'
+import $ from 'jquery'
+import mousewheel from 'jquery-mousewheel'
+import './assets/js/jquery.mCustomScrollbar.min.js'
 Vue.use(vueResource);
 Vue.use(elementUI);
 Vue.config.productionTip = false;

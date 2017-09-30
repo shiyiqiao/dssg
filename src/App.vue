@@ -62,6 +62,9 @@
         this.pArray = pArray;
       });
     },
+    mounted:function(){
+      $(".left-box").mCustomScrollbar();
+    },
     methods :{
       handleOpen:function (key, keyPath) {
           this.currentActive = key-1
