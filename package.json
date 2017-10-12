@@ -10,9 +10,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "easyscroll": "^1.0.1",
+    "jquery": "^3.2.1",
     "jquery.mousewheel": "^3.1.9",
+    "scrollbar": "^0.1.12",
     "vue": "^2.4.2",
-    "vue-router": "^2.7.0"
+    "vue-router": "^2.7.0",
+    "vue-scroll": "^2.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

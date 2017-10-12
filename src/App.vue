@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  export default {
+export default {
     name: 'app',
     data () {
       return {
@@ -63,9 +63,10 @@
       });
     },
     mounted:function(){
-      $(".left-box").mCustomScrollbar();
+
     },
     methods :{
+      onScroll:function(){},
       handleOpen:function (key, keyPath) {
           this.currentActive = key-1
       },
