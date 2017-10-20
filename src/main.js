@@ -10,12 +10,12 @@ import './assets/css/font-awesome.min.css'
 import './assets/fonts/iconfont.css'
 import './assets/css/jquery.mCustomScrollbar.min.css'
 import $ from 'jquery'
-import EasyScroll from 'vue-scroll'
+import vueScroll from 'vue-scroll'
 
 Vue.config.productionTip = false;
 Vue.use(vueResource);
 Vue.use(elementUI);
-//Vue.use(EasyScroll);
+Vue.use(vueScroll);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

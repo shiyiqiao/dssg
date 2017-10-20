@@ -4,7 +4,7 @@
       <div class="ui-logo">
         <img src="./assets/images/logo1.png"/>
       </div>
-      <div class="tree-box">
+      <div class="tree-box" v-scroll="onScroll">
           <el-menu class="el-menu-vertical-demo"  :default-active="isOpen" :unique-opened="true" :default-openeds="defaultOpeneds">
             <el-submenu  v-for="(parent,index) in pArray"   :index='parent.id' :key="parent.id"  @open="handleOpen" @close="handleClose">
               <template slot="title" >
@@ -22,6 +22,20 @@
       </div>
     </div>
     <div class="right-box">
+      <div  class="ui-header">
+        <el-row>
+          <el-col :offset="14" :span="10"><div class="grid-content bg-purple-light"></div>
+            <el-row>
+              <el-col :span="6"><a title="门户首页"><i class="fa fa-home"></i><span>门户</span></a></el-col>
+              <el-col :span="6"><a title="消息"><i class="fa fa-envelope-o"></i><span>消息</span></a></el-col>
+              <el-col :span="6"><a title="个人中心"><i class="fa fa-user"></i><span>个人中心</span></a></el-col>
+              <el-col :span="6"><a title="帮助"><i class="fa fa-question"></i><span>帮助</span></a></el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </div>
+
+      <div class="ui-location"></div>
       <router-view></router-view>
     </div>
   </div>
@@ -66,7 +80,10 @@ export default {
 
     },
     methods :{
-      onScroll:function(){},
+      onScroll:function(e, position){
+          debugger
+        this.position = position;
+      },
       handleOpen:function (key, keyPath) {
           this.currentActive = key-1
       },
@@ -78,13 +95,6 @@ export default {
 </script>
 
 <style>
-  #app {
-    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
-    font-family: "微软雅黑";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-size: 14px;
-  }
   .mr-5{
     margin-right: 5px;
   }
@@ -99,6 +109,24 @@ export default {
     color: #333;
     text-decoration: none;
   }
+  /*外层class*/
+  #app {
+    /*font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    width: 100%;
+    height: 100%;
+    clear: both;
+    font-family: "微软雅黑";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+  }
+  .ui-container{
+    position: absolute;
+    z-index:10
+  }
+  /*外层class*/
+
+  /*左侧菜单*/
   .left-box{
     position: absolute;
     left: 0;
@@ -178,8 +206,33 @@ export default {
     border-bottom: 1px solid #02719c;
     background: #015076 !important;
   }
+  /*左侧菜单*/
+
+  /*右侧菜单*/
   .right-box{
     position: absolute;
     left:200px;
+    width:100%
   }
+  /*-----------------------右侧菜单头部--------------------*/
+  .ui-header{
+    left:200px;
+    right:0;
+    height:45px;
+    line-height: 45px;
+    border-bottom: 1px solid #ddd;
+    background: #fff;
+    z-index: 11;
+    min-width: 1000px;
+    box-shadow: 0 0 10px #aaa;
+  }
+  .el-row{
+    width: 100%;
+    height:100%;
+  }
+  .el-col{
+    height: 100%;
+  }
+  /*-----------------------右侧菜单头部--------------------*/
+  /*右侧菜单*/
 </style>
