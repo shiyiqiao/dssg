@@ -26,10 +26,10 @@
         <el-row>
           <el-col :offset="14" :span="10"><div class="grid-content bg-purple-light"></div>
             <el-row>
-              <el-col :span="6"><a title="门户首页"><i class="fa fa-home"></i><span>门户</span></a></el-col>
-              <el-col :span="6"><a title="消息"><i class="fa fa-envelope-o"></i><span>消息</span></a></el-col>
-              <el-col :span="6"><a title="个人中心"><i class="fa fa-user"></i><span>个人中心</span></a></el-col>
-              <el-col :span="6"><a title="帮助"><i class="fa fa-question"></i><span>帮助</span></a></el-col>
+              <el-col :span="4" class="text-center"><a class="pos-relative portal" title="门户首页"><span><i class="fa fa-home pos-absolute"></i></span><span>门户</span></a></el-col>
+              <el-col :span="4" class="text-center"><a class="pos-relative message" title="消息"><span><i class="fa fa-envelope-o pos-absolute"></i></span><span>消息</span></a></el-col>
+              <el-col :span="4" class="text-center"><a class="pos-relative person-center" title="个人中心"><span><i class="fa fa-user pos-absolute"></i></span><span>个人中心</span></a></el-col>
+              <el-col :span="4" class="text-center"><a class="pos-relative help" title="帮助"><span><i class="fa fa-question pos-absolute"></i></span><span>帮助</span></a></el-col>
             </el-row>
           </el-col>
         </el-row>
@@ -108,6 +108,15 @@ export default {
   a{
     color: #333;
     text-decoration: none;
+  }
+  .text-center{
+    text-align: center;
+  }
+  .pos-relative{
+    position: relative;
+  }
+  .pos-absolute{
+    position: absolute;
   }
   /*外层class*/
   #app {
@@ -232,6 +241,17 @@ export default {
   }
   .el-col{
     height: 100%;
+  }
+  .portal i{
+    width: 35px;
+    height: 30px;
+    font-size: 25px;
+    top: -7px;
+    left: -40px;
+    background: #ff0000;
+    padding-top: 5px;
+    color: #fff;
+    border-radius: 50%;
   }
   /*-----------------------右侧菜单头部--------------------*/
   /*右侧菜单*/
