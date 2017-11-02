@@ -22,14 +22,22 @@
       </div>
     </div>
     <div class="right-box">
-      <div  class="ui-header">
+      <div  class="ui-header" >
         <el-row>
           <el-col :offset="14" :span="10"><div class="grid-content bg-purple-light"></div>
             <el-row>
-              <el-col :span="4" class="text-center"><a class="pos-relative portal" title="门户首页"><span><i class="fa fa-home pos-absolute"></i></span><span>门户</span></a></el-col>
-              <el-col :span="4" class="text-center"><a class="pos-relative message" title="消息"><span><i class="fa fa-envelope-o pos-absolute"></i></span><span>消息</span></a></el-col>
-              <el-col :span="4" class="text-center"><a class="pos-relative person-center" title="个人中心"><span><i class="fa fa-user pos-absolute"></i></span><span>个人中心</span></a></el-col>
-              <el-col :span="4" class="text-center"><a class="pos-relative help" title="帮助"><span><i class="fa fa-question pos-absolute"></i></span><span>帮助</span></a></el-col>
+              <el-col :offset="7" :span="3" class="text-center"><a class="portal commonIcon" title="门户首页"><i class="fa fa-home"></i><span>门户</span></a></el-col>
+              <el-col :span="3" class="text-center"><a class="message commonIcon" title="消息"><i class="fa fa-envelope-o"></i><span>消息</span></a></el-col>
+              <el-col :span="3" class="text-center">
+                <el-dropdown trigger="click" class="user-box">
+                  <a class="user commonIcon el-dropdown-link"  title="个人中心"><i class="fa fa-user"></i><span>个人中心</span></a>
+                  <el-dropdown-menu class="user-menu">
+                    <el-dropdown-item><i class="fa fa-user"></i>欢迎，<span class="loginMan">超级管理员</span></el-dropdown-item>
+                    <el-dropdown-item :command="a">关于授权</el-dropdown-item>
+                    <el-dropdown-item>退出</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </el-col>
             </el-row>
           </el-col>
         </el-row>
@@ -43,7 +51,7 @@
 
 <script>
 export default {
-    name: 'app',
+   name: 'app',
     data () {
       return {
         pArray: [],
@@ -81,7 +89,6 @@ export default {
     },
     methods :{
       onScroll:function(e, position){
-          debugger
         this.position = position;
       },
       handleOpen:function (key, keyPath) {
@@ -89,6 +96,24 @@ export default {
       },
       handleClose:function (key, keyPath) {
         this.currentActive = ''
+      },
+      handleCommand:function(a){
+          console.log(a);
+          debugger
+          this.$msgbox({
+            title:"关于授权",
+            //message: "<input type='text'>",
+            showCancelButton:true,
+            cancelButtoonText:"取消",
+            confirmButtonText:'保存',
+            beforeClose:(action,instance,done)=>{
+                if(action==='confirm'){
+                    instance.confirmButtonLoading = true;
+                    instance.confirmButtonText="执行中...";
+
+                }
+            }
+          })
       }
     }
   }
@@ -108,6 +133,7 @@ export default {
   a{
     color: #333;
     text-decoration: none;
+    display: inline-block;
   }
   .text-center{
     text-align: center;
@@ -242,16 +268,45 @@ export default {
   .el-col{
     height: 100%;
   }
-  .portal i{
-    width: 35px;
+  .commonIcon i{
+    width: 30px;
     height: 30px;
-    font-size: 25px;
-    top: -7px;
-    left: -40px;
-    background: #ff0000;
-    padding-top: 5px;
-    color: #fff;
+    line-height:30px;
+    margin-right: 5px;
+    font-size: 19px;
     border-radius: 50%;
+    color: #fff;
+  }
+  .portal i{
+    background: #ff0000;
+  }
+  .message  i{
+    background:#1ed300
+  }
+  .user i{
+    background:#0090ff
+  }
+  .commonIcon:hover{
+    color:#039ae6;
+    cursor:pointer;
+  }
+  .user-menu{
+    font-size:12px;
+    border: 1px solid rgba(0,0,0,.15);
+  }
+  .user-menu .el-dropdown-menu__item{
+    padding: 0px 90px 0 20px;
+  }
+  .user-menu .el-dropdown-menu__item:nth-child(1) i{
+    font-size: 15px;
+    margin-right: 5px;
+  }
+  .user-menu .el-dropdown-menu__item:nth-child(1) .loginMan{
+    color:#0090ff;
+  }
+  .user-menu .el-dropdown-menu__item:nth-child(2){
+    border-top: 1px solid rgba(0,0,0,.15);
+    border-bottom: 1px solid rgba(0,0,0,.15);
   }
   /*-----------------------右侧菜单头部--------------------*/
   /*右侧菜单*/
