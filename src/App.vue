@@ -26,14 +26,14 @@
         <el-row>
           <el-col :offset="14" :span="10"><div class="grid-content bg-purple-light"></div>
             <el-row>
-              <el-col :offset="7" :span="3" class="text-center"><a class="portal commonIcon" title="门户首页"><i class="fa fa-home"></i><span>门户</span></a></el-col>
-              <el-col :span="3" class="text-center"><a class="message commonIcon" title="消息"><i class="fa fa-envelope-o"></i><span>消息</span></a></el-col>
-              <el-col :span="3" class="text-center">
-                <el-dropdown trigger="click" class="user-box">
+              <el-col :offset="1" :span="4" class="text-center"><a class="portal commonIcon" title="门户首页"><i class="fa fa-home"></i><span>门户</span></a></el-col>
+              <el-col :span="4" class="text-center"><a class="message commonIcon" title="消息"><i class="fa fa-envelope-o"></i><span>消息</span></a></el-col>
+              <el-col :span="4" class="text-center">
+                <el-dropdown trigger="click" class="user-box" @command="authorization">
                   <a class="user commonIcon el-dropdown-link"  title="个人中心"><i class="fa fa-user"></i><span>个人中心</span></a>
                   <el-dropdown-menu class="user-menu">
                     <el-dropdown-item><i class="fa fa-user"></i>欢迎，<span class="loginMan">超级管理员</span></el-dropdown-item>
-                    <el-dropdown-item :command="a">关于授权</el-dropdown-item>
+                    <el-dropdown-item command="">关于授权</el-dropdown-item>
                     <el-dropdown-item>退出</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
@@ -42,7 +42,6 @@
           </el-col>
         </el-row>
       </div>
-
       <div class="ui-location"></div>
       <router-view></router-view>
     </div>
@@ -97,9 +96,7 @@ export default {
       handleClose:function (key, keyPath) {
         this.currentActive = ''
       },
-      handleCommand:function(a){
-          console.log(a);
-          debugger
+      authorization:function(){
           this.$msgbox({
             title:"关于授权",
             //message: "<input type='text'>",
@@ -110,7 +107,9 @@ export default {
                 if(action==='confirm'){
                     instance.confirmButtonLoading = true;
                     instance.confirmButtonText="执行中...";
-
+                  instance.confirmButtonLoading = false;
+                }else{
+                    done()
                 }
             }
           })
