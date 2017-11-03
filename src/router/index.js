@@ -36,122 +36,123 @@ export default new Router({
   routes: [
     {
       path:'*',
-      name:'catalogManage',
+      name:'编目管理/目录管理',
       component: catalogManage
     },
     {
       path:'/bmgl/dataDictionaryManage',
-      name:'dataDictionaryManage',
+      name:'编目管理/数据字典管理',
       component: dataDictionaryManage
     },
     {
       path:'/bmgl/dataManage',
-      name:'dataManage',
+      name:'编目管理/数据元管理',
       component: dataManage
     },
     {
       path:'/mhgl/recommendManage',
-      name:'recommendManage',
+      name:'门户管理/推荐管理',
       component: recommendManage
     },
     {
       path:'/rjsj/interchangeDiary',
-      name:'interchangeDiary',
+      name:'日记审计/交换日志',
       component: interchangeDiary
     },
     {
       path:'/rjsj/operateDiary',
-      name:'operateDiary',
+      name:'日记审计/操作日志',
       component: operateDiary
     },
     {
       path:'/rjsj/serveDiary',
-      name:'serveDiary',
+      name:'日记审计/服务日志',
       component: serveDiary
     },
     {
       path:'/xtgl/apiListMonitor',
-      name:'apiListMonitor',
+      name:'系统管理/API接口监控',
       component: apiListMonitor
     },
     {
       path:'/xtgl/interchangeDutyMonitor',
-      name:'interchangeDutyMonitor',
+      name:'系统管理/交换任务监控',
       component: interchangeDutyMonitor
     },
     {
       path:'/xtgl/keywordsFilter',
-      name:'keywordsFilter',
+      name:'系统管理/敏感词过滤',
       component: keywordsFilter
     },
     {
       path:'/xtgl/messageManage',
-      name:'messageManage',
-      component: messageManage
+      name:'系统管理/消息管理',
+      component: messageManage,
+      params:{parentName:"系统管理"}
     },
     {
       path:'/xtgl/roleManage',
-      name:'roleManage',
+      name:'系统管理/角色管理',
       component: roleManage
     },
     {
       path:'/xtgl/userManage',
-      name:'userManage',
+      name:'系统管理/用户管理',
       component: userManage
     },
     {
       path:'/xtjk/actualTimeMonitor',
-      name:'actualTimeMonitor',
+      name:'系统监控/实时监控',
       component: actualTimeMonitor
     },
     {
       path:'/xtjk/publishResourceAnalyse',
-      name:'publishResourceAnalyse',
+      name:'系统监控/发布资源分析',
       component: publishResourceAnalyse
     },
     {
       path:'/xtjk/subscribeResourceAnalyse',
-      name:'subscribeResourceAnalyse',
+      name:'系统监控/订阅资源分析',
       component: subscribeResourceAnalyse
     },
     {
       path:'/zwgl/equipmentManage',
-      name:'equipmentManage',
+      name:'组网管理/设备管理',
       component: equipmentManage
     },
     {
       path:'/zwgl/resourceRegionManage',
-      name:'resourceRegionManage',
+      name:'组网管理/资源域管理',
       component: resourceRegionManage
     },
     {
       path:'/zwgl/unitManage',
-      name:'unitManage',
+      name:'组网管理/单位管理',
       component: unitManage
     },
     {
       path:'/zygl/apiApplication',
-      name:'apiApplication',
+      name:'资源管理/我的API应用',
       component: apiApplication
     },
     {
       path:'/zygl/dataResourceManage',
-      name:'dataResourceManage',
+      name:'资源管理/数据源管理',
       component: dataResourceManage
     },
     {
       path:'/zygl/publishResource',
-      name:'publishResource',
+      name:'资源管理/发布资源',
       component: publishResource
     },
     {
       path:'/zygl/subscribeExamine',
-      name:'subscribeExamine',
+      name:'资源管理/订阅审批',
       component: subscribeExamine
     },
     {
       path:'/zygl/subscribeResource',
-      name:'subscribeResource',
+      name:'资源管理/订阅资源',
       component: subscribeResource
     }
   ]

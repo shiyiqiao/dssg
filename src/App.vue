@@ -42,8 +42,13 @@
           </el-col>
         </el-row>
       </div>
-      <div class="ui-location"></div>
-      <router-view></router-view>
+      <div class="ui-location">
+        <div class="ui-location-label"><i class="fa fa-map-marker"></i></div>
+        <ul><li><span>{{parentNav}}</span><i class="fa fa-angle-right"></i></li><li>{{subNav}}</li></ul>
+      </div>
+      <div class="bgColor-fff">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -57,7 +62,9 @@ export default {
         isOpen:"1-1",
         currentActive:'',
         defaultOpeneds:["1"],
-        uniqueOpened:0
+        uniqueOpened:0,
+        parentNav:"编目管理",
+        subNav:"目录管理"
       }
     },
     created:function () {
@@ -79,7 +86,7 @@ export default {
               v1.children = children
             }
           })
-        })
+        });
         this.pArray = pArray;
       });
     },
@@ -113,9 +120,18 @@ export default {
                 }
             }
           })
+      },
+      setLocation:function (param) {
+        this.parentNav=param.name.split("/")[0];
+        this.subNav=param.name.split("/")[1];
       }
-    }
+    },
+    watch:{
+    // 如果路由有变化，会再次执行该方法
+    "$route": "setLocation"
   }
+
+}
 </script>
 
 <style>
@@ -136,6 +152,9 @@ export default {
   }
   .text-center{
     text-align: center;
+  }
+  .bgColor-fff{
+    background: #fff;
   }
   .pos-relative{
     position: relative;
@@ -306,6 +325,23 @@ export default {
   .user-menu .el-dropdown-menu__item:nth-child(2){
     border-top: 1px solid rgba(0,0,0,.15);
     border-bottom: 1px solid rgba(0,0,0,.15);
+  }
+  .ui-location{
+    width:100%;
+    height:30px;
+    line-height: 30px;
+    color: #777;
+    font-size: 12px;
+  }
+   .ui-location .ui-location-label{
+     float: left;
+     margin: 0 5px 0 10px;
+  }
+  .ui-location ul li{
+    float:left
+  }
+  .ui-location ul li i{
+    margin: 0 5px;
   }
   /*-----------------------右侧菜单头部--------------------*/
   /*右侧菜单*/
