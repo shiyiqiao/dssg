@@ -8,8 +8,9 @@
 </template>
 
 <script>
-  import ztreeVue from "ztree-vue"
-
+  import ztree from "ztree"
+ // import './node_modules/ztree/css/zTreeStyle/zTreeStyle.css'
+  import '../../assets/css/zTreeStyle/zTreeStyle.css'
   export default{
     name:'catalogManage',
     props:{
