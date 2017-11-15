@@ -1,16 +1,60 @@
 <template>
   <div class="subContent">
     <div class="box-left">
-      <ul class="ztree" id="tree"></ul>
+      <ul id="treeId" class="ztree"></ul>
     </div>
     <div class="box-right"></div>
   </div>
 </template>
 
 <script>
+  import ztreeVue from "ztree-vue"
 
   export default{
-    name:'catalogManage'
+    name:'catalogManage',
+    props:{
+        setting:{
+          type:Object,
+          defalut:function () {
+            return {}
+          }
+        },
+        extraSetting:{
+          type:Object,
+          url:"../../static/json/tree.json",
+          defalut:function () {
+            return {}
+          }
+        }
+    },
+    created:function(){
+      var defalutSetting = {
+      simpleData:{
+        enable:true,
+          idKey:"id",
+          pIdKey:"pId"
+      },
+      callback:{
+
+      }
+    };
+      var treeNodes = this._load()
+      debugger
+    $.fn.zTree.init($("#treeId"), defalutSetting,treeNodes);
+    },
+    methods:{
+        _load(){
+          var treeNode=[];
+            $.ajax({
+              type:"get",
+              url:"../../static/json/tree.json",
+              async:false,
+            }).done((res)=>{
+              treeNode = res.data;
+            })
+            return treeNode
+        }
+    }
   }
 </script>
 <style>

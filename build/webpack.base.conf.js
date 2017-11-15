@@ -19,9 +19,16 @@ module.exports = {
       ? config.build.assetsPublicPath
       : config.dev.assetsPublicPath
   },
-  externals:{
-    jquery: "window.$"
-  },
+  plugins:[
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      jQuery:"jquery",
+      $:"jquery"
+    })
+  ],
+  // externals:{
+  //   jquery: "window.$"
+  // },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
