@@ -27,7 +27,7 @@
           }
         }
     },
-    created:function(){
+    mounted:function(){
       var defalutSetting = {
       simpleData:{
         enable:true,
@@ -39,7 +39,6 @@
       }
     };
       var treeNodes = this._load()
-      debugger
     $.fn.zTree.init($("#treeId"), defalutSetting,treeNodes);
     },
     methods:{
